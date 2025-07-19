@@ -1,206 +1,124 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kirim Pesan Anonim</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #0f172a;
-      color: #f3f4f6;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      animation: fadeIn 0.6s ease-in;
-      gap: 24px;
-    }
-
-    .container {
-      background-color: #1e293b;
-      padding: 40px 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-      animation: slideUp 0.5s ease;
-    }
-
-    .tutorial-box {
-      background-color: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 12px;
-      color: #ffffff;
-    }
-
-    p {
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: #cbd5e1;
-    }
-
-    a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 12px;
-      font-size: 14px;
-      font-family: inherit;
-    }
-
-    input {
-      background-color: #334155;
-      color: #f9fafb;
-    }
-
-    input::placeholder {
-      color: #94a3b8;
-    }
-
-    button {
-      background-color: #3b82f6;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #2563eb;
-    }
-
-    .error {
-      color: #f87171;
-      font-size: 13px;
-      margin-top: 10px;
-    }
-
-    .success {
-      color: #34d399;
-      font-size: 13px;
-      margin-top: 10px;
-    }
-
-    .checkmark {
-      display: none;
-      font-size: 24px;
-      color: #22d3ee;
-      margin-top: 10px;
-      animation: pop 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Addon Request</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        .minecraft-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .block-pixel {
+            position: relative;
+            box-shadow: 0.25rem 0.25rem #000;
+        }
+        
+        .block-pixel:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 0.15rem 0.15rem #000;
+        }
+        
+        .input-pixel {
+            border: 3px solid #000;
+            box-shadow: inset 0 0 0 2px #8b8b8b;
+        }
+    </style>
 </head>
-<body>
-  <!-- KOTAK UTAMA -->
-  <div class="container">
-    <h2>Kirim Link Minecraft</h2>
-    <p>Cari link dari <a href="https://www.minecraft.net/en-us/marketplace" target="_blank">minecraft.net</a> lalu kirimkan ke saya!</p>
+<body class="bg-[#3b422c] min-h-screen">
+    <!-- Pixel Art Banner -->
+    <div class="relative overflow-hidden">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ce326093-e206-487b-b71f-218ee527f4ff.png" alt="Minecraft landscape with various game characters and addon elements like custom mobs, items and blocks" class="w-full object-cover h-48 sm:h-64" style="filter: brightness(0.8);">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <h1 class="minecraft-font text-white text-xl sm:text-3xl md:text-4xl text-center">
+                MINECRAFT ADDON REQUEST
+            </h1>
+        </div>
+    </div>
 
-    <form id="messageForm">
-      <input type="text" id="name" placeholder="Nama kamu" required />
-      <input type="url" id="link" placeholder="Link dari minecraft.net" required />
-      <button type="submit" id="submitBtn">Kirim Pesan</button>
-      <div class="checkmark" id="checkmark">✔</div>
-      <p class="error" id="errorMsg"></p>
-      <p class="success" id="successMsg"></p>
-    </form>
-  </div>
-
-  <!-- KOTAK TUTORIAL -->
-  <div class="tutorial-box">
-    <h3>Tutorial Kirim Pesan</h3>
-    <p>1. Buka <a href="https://www.minecraft.net/en-us/marketplace" target="_blank">Marketplace Minecraft</a></p>
-    <p>2. Pilih salah satu produk, lalu salin URL-nya</p>
-    <p>3. Masukkan nama kamu dan paste link ke kolom</p>
-    <p>4. Klik tombol "Kirim Pesan" untuk mengirim ke saya!</p>
-  </div>
-
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
-  <script>
-    (function() {
-      emailjs.init("1rLVjdYpH0EaPqfQW");
-    })();
-
-    const form = document.getElementById("messageForm");
-    const checkmark = document.getElementById("checkmark");
-    const submitBtn = document.getElementById("submitBtn");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const link = document.getElementById("link").value.trim();
-      const error = document.getElementById("errorMsg");
-      const success = document.getElementById("successMsg");
-
-      error.textContent = "";
-      success.textContent = "";
-      checkmark.style.display = "none";
-
-      if (!link.startsWith("https://www.minecraft.net")) {
-        error.textContent = "❌ Link harus dari minecraft.net!";
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Mengirim...";
-
-      emailjs.send("service_0pcgo2q", "template_dyz90yl", {
-        name: name,
-        link: link
-      })
-      .then(() => {
-        success.textContent = "✅ Pesan berhasil dikirim!";
-        checkmark.style.display = "block";
-        form.reset();
-        submitBtn.textContent = "Kirim Pesan";
-        submitBtn.disabled = false;
-      }, () => {
-        error.textContent = "❌ Gagal mengirim pesan.";
-        submitBtn.textContent = "Kirim Pesan";
-        submitBtn.disabled = false;
-      });
-    });
-  </script>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto bg-[#8a9a5b] border-4 border-[#5a6b3a] p-6 sm:p-8 block-pixel">
+            <h2 class="minecraft-font text-xl sm:text-2xl text-[#2c2c2c] mb-6">
+                REQUEST YOUR CUSTOM ADDON
+            </h2>
+            
+            <!-- Request Form -->
+            <form action="https://formsubmit.co/narutoshipudhen97@gmail.com" method="POST" class="space-y-6">
+                <input type="hidden" name="_subject" value="New Minecraft Addon Request">
+                <input type="hidden" name="_template" value="table">
+                
+                <div>
+                    <label for="name" class="block minecraft-font text-sm text-[#2c2c2c] mb-2">YOUR NAME</label>
+                    <input type="text" id="name" name="name" required 
+                           class="w-full p-3 input-pixel bg-[#c4c4c4] minecraft-font text-sm focus:outline-none focus:bg-white">
+                </div>
+                
+                <div>
+                    <label for="email" class="block minecraft-font text-sm text-[#2c2c2c] mb-2">YOUR EMAIL (FOR UPDATES)</label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full p-3 input-pixel bg-[#c4c4c4] minecraft-font text-sm focus:outline-none focus:bg-white">
+                </div>
+                
+                <div>
+                    <label for="addon-type" class="block minecraft-font text-sm text-[#2c2c2c] mb-2">ADDON TYPE</label>
+                    <select id="addon-type" name="addon-type" 
+                            class="w-full p-3 input-pixel bg-[#c4c4c4] minecraft-font text-sm focus:outline-none focus:bg-white">
+                        <option value="mob">New Mob/Entity</option>
+                        <option value="block">New Block</option>
+                        <option value="item">New Item</option>
+                        <option value="dimension">New Dimension</option>
+                        <option value="mechanic">Gameplay Mechanic</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="description" class="block minecraft-font text-sm text-[#2c2c2c] mb-2">ADDON DESCRIPTION (BE SPECIFIC)</label>
+                    <textarea id="description" name="description" rows="5" required 
+                              class="w-full p-3 input-pixel bg-[#c4c4c4] minecraft-font text-sm focus:outline-none focus:bg-white"></textarea>
+                </div>
+                
+                <div class="flex justify-center">
+                    <button type="submit" 
+                            class="minecraft-font bg-[#4a5a2a] hover:bg-[#3a4a1a] text-white py-3 px-6 block-pixel transition-all duration-200">
+                        SUBMIT REQUEST
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Info Section -->
+        <div class="max-w-2xl mx-auto mt-12 bg-[#5a6b3a] border-4 border-[#3a4a1a] p-6 sm:p-8 block-pixel">
+            <div class="flex items-start gap-4">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7bf8464b-736f-4bb3-beab-ee7247c613ea.png" alt="Creeper face icon with green and black pixels" class="w-16 h-16 object-contain">
+                <div>
+                    <h3 class="minecraft-font text-lg text-white mb-3">HOW IT WORKS</h3>
+                    <ul class="space-y-2 text-[#d3d3d3] text-sm">
+                        <li>1. Fill out the request form with details about your custom addon</li>
+                        <li>2. Your request will be sent directly to my email</li>
+                        <li>3. I'll review your request and contact you for further details</li>
+                        <li>4. Once completed, I'll send you the addon files</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="mt-16 py-6 bg-[#2c2c2c]">
+        <div class="container mx-auto px-4 text-center">
+            <p class="minecraft-font text-white text-xs sm:text-sm">
+                MINECRAFT ADDON REQUEST SERVICE © 2023
+            </p>
+            <p class="minecraft-font text-[#8a9a5b] text-xs mt-2">
+                NOT AFFILIATED WITH MOJANG OR MICROSOFT
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
+
